@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.IO;
 using System.Net.Http;
 using System.Text;
 using System.Text.Json;
@@ -24,7 +25,10 @@ namespace Launcher.LoginScreen
 
         private void Logins_Load(object sender, EventArgs e)
         {
-            auto_login();
+            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "user_data.json"))
+            {
+                auto_login();
+            }
         }
 
         private void button1_Click(object sender, EventArgs e)
