@@ -28,35 +28,39 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
+            this.components = new System.ComponentModel.Container();
+            this.Main_Label = new System.Windows.Forms.Label();
+            this.Close_Label = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
+            this.MainScreen_Label = new System.Windows.Forms.Label();
+            this.owner_game_refresh = new System.Windows.Forms.Timer(this.components);
+            this.Left_Dock = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // label1
+            // Main_Label
             // 
-            this.label1.BackColor = System.Drawing.Color.Black;
-            this.label1.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(0, 0);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(1280, 50);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "  Launcher_Name";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Main_Label.BackColor = System.Drawing.Color.Black;
+            this.Main_Label.Font = new System.Drawing.Font("Arial", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Main_Label.ForeColor = System.Drawing.Color.White;
+            this.Main_Label.Location = new System.Drawing.Point(0, 0);
+            this.Main_Label.Name = "Main_Label";
+            this.Main_Label.Size = new System.Drawing.Size(1280, 50);
+            this.Main_Label.TabIndex = 0;
+            this.Main_Label.Text = "  Launcher_Name";
+            this.Main_Label.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label2
+            // Close_Label
             // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.Black;
-            this.label2.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(1244, 13);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(24, 24);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "X";
+            this.Close_Label.AutoSize = true;
+            this.Close_Label.BackColor = System.Drawing.Color.Black;
+            this.Close_Label.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Close_Label.ForeColor = System.Drawing.Color.White;
+            this.Close_Label.Location = new System.Drawing.Point(1244, 13);
+            this.Close_Label.Name = "Close_Label";
+            this.Close_Label.Size = new System.Drawing.Size(24, 24);
+            this.Close_Label.TabIndex = 1;
+            this.Close_Label.Text = "X";
+            this.Close_Label.Click += new System.EventHandler(this.Close_Label_Click);
             // 
             // label3
             // 
@@ -70,22 +74,36 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "--";
             // 
-            // label4
+            // MainScreen_Label
             // 
-            this.label4.Location = new System.Drawing.Point(0, 50);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(1280, 670);
-            this.label4.TabIndex = 3;
+            this.MainScreen_Label.Location = new System.Drawing.Point(0, 50);
+            this.MainScreen_Label.Name = "MainScreen_Label";
+            this.MainScreen_Label.Size = new System.Drawing.Size(1280, 670);
+            this.MainScreen_Label.TabIndex = 3;
+            // 
+            // owner_game_refresh
+            // 
+            this.owner_game_refresh.Interval = 3000;
+            this.owner_game_refresh.Tick += new System.EventHandler(this.owner_game_refresh_Tick);
+            // 
+            // Left_Dock
+            // 
+            this.Left_Dock.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.Left_Dock.Location = new System.Drawing.Point(0, 50);
+            this.Left_Dock.Name = "Left_Dock";
+            this.Left_Dock.Size = new System.Drawing.Size(220, 670);
+            this.Left_Dock.TabIndex = 4;
             // 
             // Main
             // 
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.None;
             this.ClientSize = new System.Drawing.Size(1280, 720);
             this.ControlBox = false;
-            this.Controls.Add(this.label4);
+            this.Controls.Add(this.Left_Dock);
+            this.Controls.Add(this.MainScreen_Label);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Close_Label);
+            this.Controls.Add(this.Main_Label);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "Main";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -98,9 +116,11 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label Main_Label;
+        private System.Windows.Forms.Label Close_Label;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label MainScreen_Label;
+        private System.Windows.Forms.Timer owner_game_refresh;
+        private System.Windows.Forms.Panel Left_Dock;
     }
 }

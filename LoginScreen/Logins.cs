@@ -15,7 +15,6 @@ namespace Launcher.LoginScreen
     public partial class Logins : UserControl
     {
         public event EventHandler ButtonClick;
-        private const string ApiServerIp = "http://127.0.0.1:5000";
         public event EventHandler LoginSuccess;
 
         public Logins()
@@ -23,11 +22,41 @@ namespace Launcher.LoginScreen
             InitializeComponent();
         }
 
-        private void Logins_Load(object sender, EventArgs e)
+        private async void Logins_Load(object sender, EventArgs e)
         {
-            if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "user_data.json"))
+            try
             {
-                auto_login();
+                var httpClient = new HttpClient();
+                var response = await httpClient.GetAsync(Main.ApiServerIp + "/api-status");
+
+                var responseBody = await response.Content.ReadAsStringAsync();
+                var message = JsonSerializer.Deserialize<Dictionary<string, string>>(responseBody)["message"];
+
+                if (!response.IsSuccessStatusCode)
+                {
+                    if (response.StatusCode == System.Net.HttpStatusCode.NotFound || response.StatusCode == System.Net.HttpStatusCode.ServiceUnavailable)
+                    {
+                        MessageBox.Show(message);
+                        Application.Exit();
+                        return;
+                    }
+                    else
+                    {
+                        throw new HttpRequestException($"Unexpected status code: {response.StatusCode}");
+                    }
+                }
+
+                MessageBox.Show(message);
+
+                if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "user_data.json"))
+                {
+                    auto_login();
+                }
+            }
+            catch (HttpRequestException)
+            {
+                MessageBox.Show("Unable to connect to the server.");
+                Application.Exit();
             }
         }
 
@@ -58,7 +87,7 @@ namespace Launcher.LoginScreen
                 var content = new StringContent(JsonSerializer.Serialize(autologinData), Encoding.UTF8, "application/json");
 
                 // Send the HTTP request
-                var response = await client.PostAsync($"{ApiServerIp}/auto-login", content);
+                var response = await client.PostAsync($"{Launcher.Main.ApiServerIp}/auto-login", content);
 
                 // If the request is successful, update the token in the JSON file
                 if (response.IsSuccessStatusCode)
@@ -150,7 +179,7 @@ namespace Launcher.LoginScreen
             {
                 var loginData = new { username = username, password = password };
                 var content = new StringContent(JsonSerializer.Serialize(loginData), Encoding.UTF8, "application/json");
-                var response = await client.PostAsync($"{ApiServerIp}/login", content);
+                var response = await client.PostAsync($"{Launcher.Main.ApiServerIp}/login", content);
 
                 var responseContent = await response.Content.ReadAsStringAsync();
                 var message = string.Empty;
@@ -182,7 +211,7 @@ namespace Launcher.LoginScreen
             {
                 var loginCompleteData = new { token = token, auto_login = autoLogin, pc_id = pcId };
                 var content = new StringContent(JsonSerializer.Serialize(loginCompleteData), Encoding.UTF8, "application/json");
-                var response = await client.PostAsync($"{ApiServerIp}/login-complete", content);
+                var response = await client.PostAsync($"{Launcher.Main.ApiServerIp}/login-complete", content);
 
                 var responseContent = await response.Content.ReadAsStringAsync();
                 var message = string.Empty;

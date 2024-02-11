@@ -107,6 +107,12 @@
     <Compile Include="MainScreen\Game1.Designer.cs">
       <DependentUpon>Game1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainScreen\None.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainScreen\None.Designer.cs">
+      <DependentUpon>None.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Language_resx\Logins.ko.resx" />
@@ -121,6 +127,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Main.resx">
       <DependentUpon>Main.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainScreen\Game1.resx">
+      <DependentUpon>Game1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainScreen\None.resx">
+      <DependentUpon>None.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
