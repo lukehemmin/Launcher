@@ -36,7 +36,7 @@ namespace Launcher
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            
+
         }
 
         private void moveFormLabel_MouseDown(object sender, MouseEventArgs e)

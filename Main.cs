@@ -28,7 +28,7 @@ namespace Launcher
             this.Main_Label.MouseDown += moveFormLabel_MouseDown;
             Left_Dock.Visible = false;
 
-            
+
         }
 
         private void Main_Load(object sender, EventArgs e)
