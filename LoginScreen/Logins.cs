@@ -46,8 +46,6 @@ namespace Launcher.LoginScreen
                     }
                 }
 
-                MessageBox.Show(message);
-
                 if (File.Exists(AppDomain.CurrentDomain.BaseDirectory + "user_data.json"))
                 {
                     auto_login();

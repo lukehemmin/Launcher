@@ -4,6 +4,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <AllowedReferenceRelatedFileExtensions>.allowedextension</AllowedReferenceRelatedFileExtensions>
     <ProjectGuid>{31C5E229-6466-481E-8628-ED2FD8B6363C}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <RootNamespace>Launcher</RootNamespace>
@@ -14,7 +15,7 @@
     <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
-    <PlatformTarget>AnyCPU</PlatformTarget>
+    <PlatformTarget>x64</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,6 +23,8 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>
+    </DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -77,6 +80,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Image_Load.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Image_Load.resx</DependentUpon>
+    </Compile>
     <Compile Include="Login.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -107,6 +115,12 @@
     <Compile Include="MainScreen\Game1.Designer.cs">
       <DependentUpon>Game1.cs</DependentUpon>
     </Compile>
+    <Compile Include="MainScreen\Game2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="MainScreen\Game2.Designer.cs">
+      <DependentUpon>Game2.cs</DependentUpon>
+    </Compile>
     <Compile Include="MainScreen\None.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -115,6 +129,16 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Settings\Settings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Settings\Settings.Designer.cs">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Image_Load.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Image_Load.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
     <EmbeddedResource Include="Language_resx\Logins.ko.resx" />
     <EmbeddedResource Include="Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
@@ -131,6 +155,9 @@
     <EmbeddedResource Include="MainScreen\Game1.resx">
       <DependentUpon>Game1.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="MainScreen\Game2.resx">
+      <DependentUpon>Game2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainScreen\None.resx">
       <DependentUpon>None.cs</DependentUpon>
     </EmbeddedResource>
@@ -143,6 +170,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Settings\Settings.resx">
+      <DependentUpon>Settings.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -157,6 +187,35 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="icon\game1-64-200px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Settings-64-200px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\game2-64-200px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\download-400-150px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Game1-Icon-350-150px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Game2-Icon-350-150px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\pause-400-150px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\update-400-150px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\play-400-150px.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icon\Logout-145-32px.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

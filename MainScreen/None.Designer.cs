@@ -39,14 +39,14 @@
             this.label1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(550, 275);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(200, 60);
+            this.label1.Size = new System.Drawing.Size(200, 42);
             this.label1.TabIndex = 0;
-            this.label1.Text = "um... Library Empty.\r\nbuy game.";
+            this.label1.Text = "um... Library Empty.";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // None_Redeem_btn
             // 
-            this.None_Redeem_btn.Location = new System.Drawing.Point(554, 370);
+            this.None_Redeem_btn.Location = new System.Drawing.Point(554, 348);
             this.None_Redeem_btn.Name = "None_Redeem_btn";
             this.None_Redeem_btn.Size = new System.Drawing.Size(196, 33);
             this.None_Redeem_btn.TabIndex = 1;
@@ -57,7 +57,7 @@
             // Redeem_Textbox
             // 
             this.Redeem_Textbox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Redeem_Textbox.Location = new System.Drawing.Point(554, 342);
+            this.Redeem_Textbox.Location = new System.Drawing.Point(554, 320);
             this.Redeem_Textbox.Name = "Redeem_Textbox";
             this.Redeem_Textbox.Size = new System.Drawing.Size(196, 22);
             this.Redeem_Textbox.TabIndex = 0;

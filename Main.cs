@@ -17,9 +17,18 @@ namespace Launcher
     {
         static public string Token;
         static public string ApiServerIp = "http://127.0.0.1:5000";
+        // 슬라이딩 메뉴 최소/최대 너비
+        const int MAX_SLIDING_WIDTH = 200;
+        const int MIN_SLIDING_WIDTH = 64;
+        // 슬라이딩 메뉴 속도
+        const int STEP_SLIDING = 10;
+        // 처음 로드되었을때 슬라이딩 메뉴 크기
+        int _posSliding = 64;
 
         None none = new None();
         Game1 game1 = new Game1();
+        Game2 game2 = new Game2();
+        Settings.Settings settings = new Settings.Settings();
 
         public Main()
         {
@@ -28,7 +37,30 @@ namespace Launcher
             this.Main_Label.MouseDown += moveFormLabel_MouseDown;
             Left_Dock.Visible = false;
 
-            
+            Left_Dock.Width = _posSliding;
+            // Image_Load
+            //Logout_Label.Image = Image_Load.Logout_145_32px;
+            Setting_Label.Image = Image_Load.Settings_64_200px;
+            Setting_Label.Click += (Sender, e) =>
+            {
+                MainScreen_Label.Controls.Clear();
+                MainScreen_Label.Controls.Add(settings);
+            };
+            //DOCK
+            Left_Dock.MouseEnter += Left_Dock_MouseEnter;
+            Left_Dock.MouseLeave += Left_Dock_MouseLeave;
+            Setting_Label.MouseEnter += Left_Dock_MouseEnter;
+            Setting_Label.MouseLeave += Left_Dock_MouseLeave; // This line is not necessary
+            GameList1_Label.MouseEnter += Left_Dock_MouseEnter;
+            GameList1_Label.MouseLeave += Left_Dock_MouseLeave; // This line is not necessary
+            GameList2_Label.MouseEnter += Left_Dock_MouseEnter;
+            GameList2_Label.MouseLeave += Left_Dock_MouseLeave; // This line is not necessary
+
+            // Add these lines
+            Timer timerCheckPanelSize = new Timer();
+            timerCheckPanelSize.Interval = 10; // Check every second
+            timerCheckPanelSize.Tick += TimerCheckPanelSize_Tick;
+            timerCheckPanelSize.Start();
         }
 
         private void Main_Load(object sender, EventArgs e)
@@ -45,6 +77,8 @@ namespace Launcher
                 owner_game_refresh.Enabled = true;
                 MainScreen_Load();
             }
+
+            
         }
 
         private async void MainScreen_Load()
@@ -53,14 +87,45 @@ namespace Launcher
             if (games.Any())
             {
                 Left_Dock.Visible = true;
-                if (MainScreen_Label.Controls.Contains(none))
+                
+                if (MainScreen_Label.Controls.Contains(none) || MainScreen_Label.Controls.Count == 0)
                 {
                     MainScreen_Label.Controls.Remove(none);
+                    
+                    if (games[0] == "Game1")
+                    {
+                        MainScreen_Label.Controls.Add(game1);
+                        Console.WriteLine(games[0]);
+                    }
+                    else if (games[0] == "Game2")
+                    {
+                        MainScreen_Label.Controls.Add(game2);
+                    }
                 }
 
                 if (games[0] == "Game1")
                 {
-                    MainScreen_Label.Controls.Add(game1);
+                    GameList1_Label.Image = Image_Load.game1_64_200px;
+                    GameList1_Label.Click += GameList1_Label_game1_Click;
+                }
+                else if (games[0] == "Game2")
+                {
+                    GameList1_Label.Image = Image_Load.game2_64_200px;
+                    GameList1_Label.Click += GameList1_Label_game2_Click;
+                }
+
+                if (games.Count >= 2)
+                {
+                    if (games[1] == "Game1")
+                    {
+                        GameList2_Label.Image = Image_Load.game1_64_200px;
+                        GameList2_Label.Click += GameList2_Label_game1_Click;
+                    }
+                    else if (games[1] == "Game2")
+                    {
+                        GameList2_Label.Image = Image_Load.game2_64_200px;
+                        GameList2_Label.Click += GameList2_Label_game2_Click;
+                    }
                 }
             }
             else
@@ -68,6 +133,30 @@ namespace Launcher
                 MainScreen_Label.Controls.Add(none);
                 Left_Dock.Visible = false;
             }
+        }
+
+        private void GameList1_Label_game1_Click(object sender, EventArgs e)
+        {
+            MainScreen_Label.Controls.Clear();
+            MainScreen_Label.Controls.Add(game1);
+        }
+
+        private void GameList1_Label_game2_Click(object sender, EventArgs e)
+        {
+            MainScreen_Label.Controls.Clear();
+            MainScreen_Label.Controls.Add(game2);
+        }
+
+        private void GameList2_Label_game1_Click(object sender, EventArgs e)
+        {
+            MainScreen_Label.Controls.Clear();
+            MainScreen_Label.Controls.Add(game1);
+        }
+
+        private void GameList2_Label_game2_Click(object sender, EventArgs e)
+        {
+            MainScreen_Label.Controls.Clear();
+            MainScreen_Label.Controls.Add(game2);
         }
 
         private async void owner_game_refresh_Tick(object sender, EventArgs e)
@@ -85,6 +174,8 @@ namespace Launcher
             var games = JsonSerializer.Deserialize<Dictionary<string, List<string>>>(responseBody);
             return games["games"];
         }
+
+        
 
         private void moveFormLabel_MouseDown(object sender, MouseEventArgs e)
         {
@@ -105,5 +196,54 @@ namespace Launcher
         {
             this.Close();
         }
+
+        private void Left_Dock_MouseEnter(object sender, EventArgs e)
+        {
+            timerSlidingClose.Stop(); // Stop the closing timer
+            timerSlidingOpen.Start();
+        }
+
+        private void Left_Dock_MouseLeave(object sender, EventArgs e)
+        {
+            timerSlidingOpen.Stop(); // Stop the opening timer
+            timerSlidingClose.Start();
+        }
+        // 슬라이드 패널 열림
+        private void timerSlidingOpen_Tick(object sender, EventArgs e)
+        {
+            if (Left_Dock.Width < MAX_SLIDING_WIDTH)
+            {
+                Left_Dock.Width += STEP_SLIDING;
+                _posSliding = Left_Dock.Width;
+            }
+            else
+            {
+                timerSlidingOpen.Stop();
+            }
+        }
+        // 슬라이드 패널 닫힘
+        private void timerSlidingClose_Tick(object sender, EventArgs e)
+        {
+            if (Left_Dock.Width > MIN_SLIDING_WIDTH)
+            {
+                Left_Dock.Width -= STEP_SLIDING;
+                _posSliding = Left_Dock.Width;
+            }
+            else
+            {
+                timerSlidingClose.Stop();
+            }
+        }
+        // 슬라이드 패널 복구
+        private void TimerCheckPanelSize_Tick(object sender, EventArgs e)
+        {
+            // If the panel width is not what it's supposed to be, reset it
+            if (Left_Dock.Width != _posSliding)
+            {
+                Left_Dock.Width = _posSliding;
+            }
+        }
+
+        
     }
 }

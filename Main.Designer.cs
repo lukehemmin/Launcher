@@ -35,6 +35,12 @@
             this.MainScreen_Label = new System.Windows.Forms.Label();
             this.owner_game_refresh = new System.Windows.Forms.Timer(this.components);
             this.Left_Dock = new System.Windows.Forms.Panel();
+            this.Setting_Label = new System.Windows.Forms.Label();
+            this.GameList2_Label = new System.Windows.Forms.Label();
+            this.GameList1_Label = new System.Windows.Forms.Label();
+            this.timerSlidingOpen = new System.Windows.Forms.Timer(this.components);
+            this.timerSlidingClose = new System.Windows.Forms.Timer(this.components);
+            this.Left_Dock.SuspendLayout();
             this.SuspendLayout();
             // 
             // Main_Label
@@ -89,10 +95,54 @@
             // Left_Dock
             // 
             this.Left_Dock.BackColor = System.Drawing.SystemColors.ControlDark;
+            this.Left_Dock.Controls.Add(this.Setting_Label);
+            this.Left_Dock.Controls.Add(this.GameList2_Label);
+            this.Left_Dock.Controls.Add(this.GameList1_Label);
             this.Left_Dock.Location = new System.Drawing.Point(0, 50);
             this.Left_Dock.Name = "Left_Dock";
-            this.Left_Dock.Size = new System.Drawing.Size(220, 670);
+            this.Left_Dock.Size = new System.Drawing.Size(200, 670);
             this.Left_Dock.TabIndex = 4;
+            // 
+            // Setting_Label
+            // 
+            this.Setting_Label.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.Setting_Label.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Setting_Label.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.Setting_Label.Location = new System.Drawing.Point(0, 606);
+            this.Setting_Label.Name = "Setting_Label";
+            this.Setting_Label.Size = new System.Drawing.Size(200, 64);
+            this.Setting_Label.TabIndex = 7;
+            this.Setting_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // GameList2_Label
+            // 
+            this.GameList2_Label.Dock = System.Windows.Forms.DockStyle.Top;
+            this.GameList2_Label.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.GameList2_Label.Location = new System.Drawing.Point(0, 64);
+            this.GameList2_Label.Name = "GameList2_Label";
+            this.GameList2_Label.Size = new System.Drawing.Size(200, 64);
+            this.GameList2_Label.TabIndex = 6;
+            this.GameList2_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // GameList1_Label
+            // 
+            this.GameList1_Label.Dock = System.Windows.Forms.DockStyle.Top;
+            this.GameList1_Label.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.GameList1_Label.Location = new System.Drawing.Point(0, 0);
+            this.GameList1_Label.Name = "GameList1_Label";
+            this.GameList1_Label.Size = new System.Drawing.Size(200, 64);
+            this.GameList1_Label.TabIndex = 5;
+            this.GameList1_Label.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // timerSlidingOpen
+            // 
+            this.timerSlidingOpen.Interval = 10;
+            this.timerSlidingOpen.Tick += new System.EventHandler(this.timerSlidingOpen_Tick);
+            // 
+            // timerSlidingClose
+            // 
+            this.timerSlidingClose.Interval = 10;
+            this.timerSlidingClose.Tick += new System.EventHandler(this.timerSlidingClose_Tick);
             // 
             // Main
             // 
@@ -109,6 +159,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Main";
             this.Load += new System.EventHandler(this.Main_Load);
+            this.Left_Dock.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -122,5 +173,10 @@
         private System.Windows.Forms.Label MainScreen_Label;
         private System.Windows.Forms.Timer owner_game_refresh;
         private System.Windows.Forms.Panel Left_Dock;
+        private System.Windows.Forms.Label GameList1_Label;
+        private System.Windows.Forms.Label GameList2_Label;
+        private System.Windows.Forms.Label Setting_Label;
+        private System.Windows.Forms.Timer timerSlidingOpen;
+        private System.Windows.Forms.Timer timerSlidingClose;
     }
 }
