@@ -13,7 +13,7 @@ namespace Launcher.MainScreen
     public partial class Game1 : UserControl
     {
         private int ready = 1;
-        
+
         public Game1()
         {
             InitializeComponent();
@@ -27,7 +27,7 @@ namespace Launcher.MainScreen
 
         private void Logout_Label_Click(object sender, EventArgs e)
         {
-            
+
         }
 
         private void Game1_Play_Label_Click(object sender, EventArgs e)

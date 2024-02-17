@@ -78,7 +78,7 @@ namespace Launcher
                 MainScreen_Load();
             }
 
-            
+
         }
 
         private async void MainScreen_Load()
@@ -87,11 +87,11 @@ namespace Launcher
             if (games.Any())
             {
                 Left_Dock.Visible = true;
-                
+
                 if (MainScreen_Label.Controls.Contains(none) || MainScreen_Label.Controls.Count == 0)
                 {
                     MainScreen_Label.Controls.Remove(none);
-                    
+
                     if (games[0] == "Game1")
                     {
                         MainScreen_Label.Controls.Add(game1);
@@ -175,7 +175,7 @@ namespace Launcher
             return games["games"];
         }
 
-        
+
 
         private void moveFormLabel_MouseDown(object sender, MouseEventArgs e)
         {
@@ -244,6 +244,6 @@ namespace Launcher
             }
         }
 
-        
+
     }
 }
