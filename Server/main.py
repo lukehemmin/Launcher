@@ -1,5 +1,10 @@
 # mysql 또는 mariadb 설치 후 launcher 테이블 생성
 # 아래 app.config['SQLALCHEMY_DATABASE_URI'] 에서 본인의 mysql 또는 mariadb 계정 정보로 변경 후 실행
+import gc
+import time
+import threading
+import signal
+import sys
 from flask import Flask, request, abort
 from flask_restful import Resource, Api
 from flask_sqlalchemy import SQLAlchemy
@@ -222,6 +227,19 @@ class Status(Resource):
         game_names = [game.game_name for game in owned_games]
 
         return {"games": game_names}, 200
+    
+def cleanup():
+    while True:
+        gc.collect()
+        time.sleep(60)  # 1분 동안 대기
+
+def signal_handler(sig, frame):
+    print('Cleaning up and shutting down...')
+    gc.collect()
+    sys.exit(0)
+
+signal.signal(signal.SIGINT, signal_handler)
+signal.signal(signal.SIGTERM, signal_handler)
 
 api.add_resource(ApiStatus, '/api-status')
 api.add_resource(Register, '/register')
@@ -242,4 +260,8 @@ def handle_connect():
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+
+    cleanup_thread = threading.Thread(target=cleanup)
+    cleanup_thread.start()
+    
     socketio.run(app, debug=True)
