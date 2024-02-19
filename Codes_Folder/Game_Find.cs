@@ -8,6 +8,6 @@ namespace Launcher.Codes_Folder
 {
     internal class Game_Find
     {
-        
+
     }
 }

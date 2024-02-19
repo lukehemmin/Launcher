@@ -13,7 +13,7 @@ namespace Launcher.MainScreen
     public partial class Game1 : UserControl
     {
         private int ready = 1;
-        
+
         public Game1()
         {
             InitializeComponent();
