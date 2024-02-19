@@ -134,6 +134,7 @@ namespace Launcher.LoginScreen
         {
             string Username = Username_Textbox.Text;
             string Password = Password_Textbox.Text;
+            Main.Usernames = Username;
             Alert_reset();
             if (EmptyCheck())
             {

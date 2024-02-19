@@ -15,14 +15,15 @@ namespace Launcher
 {
     public partial class Main : Form
     {
+        static public string Usernames;
         static public string Token;
         static public string ApiServerIp = "http://127.0.0.1:5000";
-        // 슬라이딩 메뉴 최소/최대 너비
+        // Slider menu minimum/maximum width
         const int MAX_SLIDING_WIDTH = 200;
         const int MIN_SLIDING_WIDTH = 64;
-        // 슬라이딩 메뉴 속도
+        // Slider menu speed
         const int STEP_SLIDING = 10;
-        // 처음 로드되었을때 슬라이딩 메뉴 크기
+        // Slider menu size when first loaded
         int _posSliding = 64;
 
         None none = new None();
@@ -77,8 +78,6 @@ namespace Launcher
                 owner_game_refresh.Enabled = true;
                 MainScreen_Load();
             }
-
-            
         }
 
         private async void MainScreen_Load()
@@ -105,26 +104,47 @@ namespace Launcher
 
                 if (games[0] == "Game1")
                 {
-                    GameList1_Label.Image = Image_Load.game1_64_200px;
-                    GameList1_Label.Click += GameList1_Label_game1_Click;
+                    if (GameList1_Label.Image != Image_Load.game1_64_200px)
+                    {
+                        GameList1_Label.Image = Image_Load.game1_64_200px;
+                        GameList1_Label.Click += GameList1_Label_game1_Click;
+                    }
                 }
                 else if (games[0] == "Game2")
                 {
-                    GameList1_Label.Image = Image_Load.game2_64_200px;
-                    GameList1_Label.Click += GameList1_Label_game2_Click;
+                    if (GameList1_Label.Image != Image_Load.game2_64_200px)
+                    {
+                        GameList1_Label.Image = Image_Load.game2_64_200px;
+                        GameList1_Label.Click += GameList1_Label_game2_Click;
+                    }
                 }
 
                 if (games.Count >= 2)
                 {
                     if (games[1] == "Game1")
                     {
-                        GameList2_Label.Image = Image_Load.game1_64_200px;
-                        GameList2_Label.Click += GameList2_Label_game1_Click;
+                        if (GameList2_Label.Image != Image_Load.game1_64_200px)
+                        {
+                            GameList2_Label.Image = Image_Load.game1_64_200px;
+                            GameList2_Label.Click += GameList2_Label_game1_Click;
+                        }
                     }
                     else if (games[1] == "Game2")
                     {
-                        GameList2_Label.Image = Image_Load.game2_64_200px;
-                        GameList2_Label.Click += GameList2_Label_game2_Click;
+                        if (GameList2_Label.Image != Image_Load.game2_64_200px)
+                        {
+                            GameList2_Label.Image = Image_Load.game2_64_200px;
+                            GameList2_Label.Click += GameList2_Label_game2_Click;
+                        }
+                    }
+                }
+                else
+                {
+                    if (GameList2_Label.Image != null)
+                    {
+                        GameList2_Label.Image = null;
+                        GameList2_Label.Click -= GameList2_Label_game1_Click;
+                        GameList2_Label.Click -= GameList2_Label_game2_Click;
                     }
                 }
             }
@@ -175,8 +195,6 @@ namespace Launcher
             return games["games"];
         }
 
-        
-
         private void moveFormLabel_MouseDown(object sender, MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -208,7 +226,7 @@ namespace Launcher
             timerSlidingOpen.Stop(); // Stop the opening timer
             timerSlidingClose.Start();
         }
-        // 슬라이드 패널 열림
+        // Slider panel open
         private void timerSlidingOpen_Tick(object sender, EventArgs e)
         {
             if (Left_Dock.Width < MAX_SLIDING_WIDTH)
@@ -221,7 +239,7 @@ namespace Launcher
                 timerSlidingOpen.Stop();
             }
         }
-        // 슬라이드 패널 닫힘
+        // Slider panel close
         private void timerSlidingClose_Tick(object sender, EventArgs e)
         {
             if (Left_Dock.Width > MIN_SLIDING_WIDTH)
@@ -234,7 +252,7 @@ namespace Launcher
                 timerSlidingClose.Stop();
             }
         }
-        // 슬라이드 패널 복구
+        // Slider panel recovery
         private void TimerCheckPanelSize_Tick(object sender, EventArgs e)
         {
             // If the panel width is not what it's supposed to be, reset it
@@ -244,6 +262,33 @@ namespace Launcher
             }
         }
 
-        
+        public async void Logout()
+        {
+            owner_game_refresh.Enabled = false;
+            MainScreen_Label.Controls.Clear();
+            this.Hide();
+
+            var httpClient = new HttpClient();
+            var content = new StringContent(JsonSerializer.Serialize(new { token = Token }), Encoding.UTF8, "application/json");
+            var response = await httpClient.PostAsync(ApiServerIp + "/logout", content);
+
+            if (response.IsSuccessStatusCode)
+            {
+                // If the logout was successful, show the login form
+                Login loginfrm = new Login();
+                DialogResult result = loginfrm.ShowDialog();
+
+                if (result != DialogResult.OK)
+                {
+                    this.Close();
+                }
+                else
+                {
+                    owner_game_refresh.Enabled = true;
+                    this.Show();
+                    MainScreen_Load();
+                }
+            }
+        }
     }
 }

@@ -80,6 +80,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Codes_Folder\Game_Button.cs" />
+    <Compile Include="Codes_Folder\Game_Find.cs" />
     <Compile Include="Image_Load.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -217,5 +219,6 @@
   <ItemGroup>
     <None Include="icon\Logout-145-32px.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

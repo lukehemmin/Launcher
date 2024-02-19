@@ -31,7 +31,7 @@
             this.Game1_Play_Label = new System.Windows.Forms.Label();
             this.Game1_Icon_Label = new System.Windows.Forms.Label();
             this.Profile_images_Label = new System.Windows.Forms.Label();
-            this.label1 = new System.Windows.Forms.Label();
+            this.Game1_Username_Label = new System.Windows.Forms.Label();
             this.Logout_Label = new System.Windows.Forms.Label();
             this.Game1_ProgressBar = new System.Windows.Forms.ProgressBar();
             this.SuspendLayout();
@@ -60,16 +60,16 @@
             this.Profile_images_Label.Size = new System.Drawing.Size(64, 64);
             this.Profile_images_Label.TabIndex = 6;
             // 
-            // label1
+            // Game1_Username_Label
             // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.Transparent;
-            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(1113, 27);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(149, 19);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Usernameddddd...";
+            this.Game1_Username_Label.AutoSize = true;
+            this.Game1_Username_Label.BackColor = System.Drawing.Color.Transparent;
+            this.Game1_Username_Label.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Game1_Username_Label.Location = new System.Drawing.Point(1113, 27);
+            this.Game1_Username_Label.Name = "Game1_Username_Label";
+            this.Game1_Username_Label.Size = new System.Drawing.Size(149, 19);
+            this.Game1_Username_Label.TabIndex = 7;
+            this.Game1_Username_Label.Text = "Usernameddddd...";
             // 
             // Logout_Label
             // 
@@ -94,7 +94,7 @@
             this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.Controls.Add(this.Game1_ProgressBar);
             this.Controls.Add(this.Logout_Label);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Game1_Username_Label);
             this.Controls.Add(this.Profile_images_Label);
             this.Controls.Add(this.Game1_Icon_Label);
             this.Controls.Add(this.Game1_Play_Label);
@@ -111,8 +111,8 @@
         private System.Windows.Forms.Label Game1_Play_Label;
         private System.Windows.Forms.Label Game1_Icon_Label;
         private System.Windows.Forms.Label Profile_images_Label;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label Logout_Label;
         private System.Windows.Forms.ProgressBar Game1_ProgressBar;
+        private System.Windows.Forms.Label Game1_Username_Label;
     }
 }
