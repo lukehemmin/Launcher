@@ -262,6 +262,7 @@ namespace Launcher.LoginScreen
         private void Alert_Message(string Message) // Alert Message
         {
             Login_Button.Location = new Point(125, 320);
+            Register_Button.Location = new Point(125, 395);
             Login_Alert_Label.Visible = true;
             Login_Alert_Label.Text = Message;
         }
@@ -269,6 +270,7 @@ namespace Launcher.LoginScreen
         private void Alert_reset() // Alert Message
         {
             Login_Button.Location = new Point(125, 285);
+            Register_Button.Location = new Point(125, 360);
             Login_Alert_Label.Visible = false;
         }
 
@@ -284,6 +286,11 @@ namespace Launcher.LoginScreen
             }
 
             return string.Empty;
+        }
+
+        private void Register_Button_Click(object sender, EventArgs e)
+        {
+            ButtonClick?.Invoke(this, e);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Launcher.Codes_Folder;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,6 +13,8 @@ namespace Launcher.MainScreen
 {
     public partial class Game2 : UserControl
     {
+        Game_Download gameDownload = new Game_Download();
+
         public Game2()
         {
             InitializeComponent();
@@ -31,6 +34,27 @@ namespace Launcher.MainScreen
             ((Main)ParentForm).Logout();
         }
 
+        private void Game2_Play_Label_Click(object sender, EventArgs e)
+        {
+            if (Main.Game2_Button == true)
+            {
+                Game2_ProgressBar.Visible = true;
+
+                gameDownload.Button_Click("Game1");
+
+                var downloader = new Game_Download();
+                downloader.DownloadProgressChanged += UpdateProgressBar;
+            }
+        }
+
+        private void UpdateProgressBar(int gameNum, int progress)
+        {
+            if (gameNum == 2)
+            {
+                Game2_ProgressBar.Value = progress;
+            }
+        }
+
         private void Usernames_label()
         {
             string short_Usernames;
@@ -44,6 +68,40 @@ namespace Launcher.MainScreen
             }
 
             Game2_Username_Label.Text = short_Usernames;
+        }
+
+        public void Game2_Button_Set(string change_value1, string change_value2)
+        {
+            if (change_value1 == "Activate")
+            {
+                if (change_value2 == "true")
+                {
+                    Main.Game2_Button = true;
+                }
+                else if (change_value2 == "false")
+                {
+                    Main.Game2_Button = false;
+                }
+            }
+            else if (change_value1 == "Image")
+            {
+                if (change_value2 == "Download")
+                {
+                    Game2_Play_Label.Image = Image_Load.download_400_150px;
+                }
+                else if (change_value2 == "Pause")
+                {
+                    Game2_Play_Label.Image = Image_Load.pause_400_150px;
+                }
+                else if (change_value2 == "Play")
+                {
+                    Game2_Play_Label.Image = Image_Load.play_400_150px;
+                }
+                else if (change_value2 == "Update")
+                {
+                    Game2_Play_Label.Image = Image_Load.update_400_150px;
+                }
+            }
         }
     }
 }

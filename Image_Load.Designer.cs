@@ -113,6 +113,16 @@ namespace Launcher {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Logout_145_32px {
+            get {
+                object obj = ResourceManager.GetObject("Logout_145_32px", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap pause_400_150px {
             get {
                 object obj = ResourceManager.GetObject("pause_400_150px", resourceCulture);

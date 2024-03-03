@@ -10,6 +10,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Launcher.MainScreen;
+using System.IO;
+using Microsoft.WindowsAPICodePack.Dialogs;
 
 namespace Launcher
 {
@@ -18,6 +20,8 @@ namespace Launcher
         static public string Usernames;
         static public string Token;
         static public string ApiServerIp = "http://127.0.0.1:5000";
+        static public string FolderPath = "";
+
         // Slider menu minimum/maximum width
         const int MAX_SLIDING_WIDTH = 200;
         const int MIN_SLIDING_WIDTH = 64;
@@ -30,6 +34,10 @@ namespace Launcher
         Game1 game1 = new Game1();
         Game2 game2 = new Game2();
         Settings.Settings settings = new Settings.Settings();
+
+        // Ready Button
+        static public Boolean Game1_Button = false;
+        static public Boolean Game2_Button = false;
 
         public Main()
         {
@@ -179,7 +187,7 @@ namespace Launcher
             MainScreen_Label.Controls.Add(game2);
         }
 
-        private async void owner_game_refresh_Tick(object sender, EventArgs e)
+        private void owner_game_refresh_Tick(object sender, EventArgs e)
         {
             MainScreen_Load();
         }
@@ -289,6 +297,22 @@ namespace Launcher
                     MainScreen_Load();
                 }
             }
+        }
+
+        public static string FolderDialog()
+        {
+            CommonOpenFileDialog dialog = new CommonOpenFileDialog();
+
+            dialog.IsFolderPicker = true; // true : Folder Select / false : File Select
+
+            if (dialog.ShowDialog() == CommonFileDialogResult.Ok)
+            {
+                FolderPath = dialog.FileName;
+
+                return FolderPath;
+            }
+
+            return null;
         }
     }
 }

@@ -37,6 +37,7 @@ class User(db.Model):
     pc_id = db.Column(String(64))
     ip_address = db.Column(String(45))
     reg_ip = db.Column(String(45))
+    roles = db.Column(String(45))
 
     def set_password(self, password):
         self.password_hash = hash_password(password)
@@ -86,6 +87,7 @@ class Register(Resource):
         user = User(username=username)
         user.set_password(password)
         user.reg_ip = request.remote_addr
+        user.roles = "user"
 
         db.session.add(user)
         db.session.commit()
@@ -253,9 +255,9 @@ api.add_resource(Status, '/status')
 api.add_resource(RedeemCode, '/redeem')
 
 @socketio.on('connect')
-def handle_connect():
+def handle_connect() :
     threading.Thread(target=background_task).start()
-    threading.Thread(target=check_server, args=("127.0.0.1", 5000)).start()
+    threading.Thread(target=check_server, args=("0.0.0.0", 5000)).start()
 
 if __name__ == '__main__':
     with app.app_context():
@@ -264,4 +266,4 @@ if __name__ == '__main__':
     cleanup_thread = threading.Thread(target=cleanup)
     cleanup_thread.start()
     
-    socketio.run(app, debug=True)
+    socketio.run(app, host='0.0.0.0', port=5000, debug=True)
