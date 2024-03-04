@@ -38,7 +38,7 @@ namespace Launcher.MainScreen
         {
             if (Main.Game1_Button == true)
             {
-                
+
                 Game1_ProgressBar.Visible = true;
 
                 gameDownload.Button_Click("Game1");
