@@ -28,26 +28,27 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
+            this.Launcher_Version_Label = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // Launcher_Version_Label
             // 
-            this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(25, 629);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(185, 18);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Game Launcher version : ";
+            this.Launcher_Version_Label.AutoSize = true;
+            this.Launcher_Version_Label.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Launcher_Version_Label.Location = new System.Drawing.Point(25, 629);
+            this.Launcher_Version_Label.Name = "Launcher_Version_Label";
+            this.Launcher_Version_Label.Size = new System.Drawing.Size(185, 18);
+            this.Launcher_Version_Label.TabIndex = 0;
+            this.Launcher_Version_Label.Text = "Game Launcher version : ";
             // 
             // Settings
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.Launcher_Version_Label);
             this.Name = "Settings";
-            this.Size = new System.Drawing.Size(1280, 670);
+            this.Size = new System.Drawing.Size(1216, 670);
+            this.Load += new System.EventHandler(this.Settings_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -55,6 +56,6 @@
 
         #endregion
 
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label Launcher_Version_Label;
     }
 }

@@ -78,6 +78,8 @@ namespace Launcher.LoginScreen
                 return;
             }
 
+            Main.Usernames = userData.Username.ToString();
+
             // Prepare the HTTP request
             using (var client = new HttpClient())
             {

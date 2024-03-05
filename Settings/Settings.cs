@@ -16,5 +16,10 @@ namespace Launcher.Settings
         {
             InitializeComponent();
         }
+
+        private void Settings_Load(object sender, EventArgs e)
+        {
+            Launcher_Version_Label.Text = Main.Launcher_Version;
+        }
     }
 }

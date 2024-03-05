@@ -19,6 +19,11 @@ namespace Launcher.MainScreen
             InitializeComponent();
         }
 
+        private void None_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private async void None_Redeem_btn_Click(object sender, EventArgs e)
         {
             Redeem_Textbox.Enabled = false;

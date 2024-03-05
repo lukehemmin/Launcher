@@ -37,7 +37,7 @@
             // label1
             // 
             this.label1.Font = new System.Drawing.Font("Arial", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(550, 275);
+            this.label1.Location = new System.Drawing.Point(488, 239);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(200, 42);
             this.label1.TabIndex = 0;
@@ -46,7 +46,7 @@
             // 
             // None_Redeem_btn
             // 
-            this.None_Redeem_btn.Location = new System.Drawing.Point(554, 348);
+            this.None_Redeem_btn.Location = new System.Drawing.Point(492, 312);
             this.None_Redeem_btn.Name = "None_Redeem_btn";
             this.None_Redeem_btn.Size = new System.Drawing.Size(196, 33);
             this.None_Redeem_btn.TabIndex = 1;
@@ -57,7 +57,7 @@
             // Redeem_Textbox
             // 
             this.Redeem_Textbox.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Redeem_Textbox.Location = new System.Drawing.Point(554, 320);
+            this.Redeem_Textbox.Location = new System.Drawing.Point(492, 284);
             this.Redeem_Textbox.Name = "Redeem_Textbox";
             this.Redeem_Textbox.Size = new System.Drawing.Size(196, 22);
             this.Redeem_Textbox.TabIndex = 0;
@@ -66,7 +66,7 @@
             // Alert_Message_Label
             // 
             this.Alert_Message_Label.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Alert_Message_Label.Location = new System.Drawing.Point(551, 406);
+            this.Alert_Message_Label.Location = new System.Drawing.Point(489, 370);
             this.Alert_Message_Label.Name = "Alert_Message_Label";
             this.Alert_Message_Label.Size = new System.Drawing.Size(199, 23);
             this.Alert_Message_Label.TabIndex = 2;
@@ -81,7 +81,8 @@
             this.Controls.Add(this.None_Redeem_btn);
             this.Controls.Add(this.label1);
             this.Name = "None";
-            this.Size = new System.Drawing.Size(1280, 670);
+            this.Size = new System.Drawing.Size(1216, 670);
+            this.Load += new System.EventHandler(this.None_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

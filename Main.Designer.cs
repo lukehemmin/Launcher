@@ -82,9 +82,9 @@
             // 
             // MainScreen_Label
             // 
-            this.MainScreen_Label.Location = new System.Drawing.Point(0, 50);
+            this.MainScreen_Label.Location = new System.Drawing.Point(64, 50);
             this.MainScreen_Label.Name = "MainScreen_Label";
-            this.MainScreen_Label.Size = new System.Drawing.Size(1280, 670);
+            this.MainScreen_Label.Size = new System.Drawing.Size(1216, 670);
             this.MainScreen_Label.TabIndex = 3;
             // 
             // owner_game_refresh

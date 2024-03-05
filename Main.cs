@@ -21,6 +21,7 @@ namespace Launcher
         static public string Token;
         static public string ApiServerIp = "http://127.0.0.1:5000";
         static public string FolderPath = "";
+        static public string Launcher_Version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
 
         // Slider menu minimum/maximum width
         const int MAX_SLIDING_WIDTH = 200;
