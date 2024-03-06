@@ -38,8 +38,8 @@
             // 
             // Game1_Play_Label
             // 
-            this.Game1_Play_Label.BackColor = System.Drawing.Color.White;
-            this.Game1_Play_Label.Location = new System.Drawing.Point(795, 493);
+            this.Game1_Play_Label.BackColor = System.Drawing.Color.Transparent;
+            this.Game1_Play_Label.Location = new System.Drawing.Point(790, 490);
             this.Game1_Play_Label.Name = "Game1_Play_Label";
             this.Game1_Play_Label.Size = new System.Drawing.Size(400, 150);
             this.Game1_Play_Label.TabIndex = 0;
@@ -83,7 +83,7 @@
             // 
             this.Game1_ProgressBar.Location = new System.Drawing.Point(50, 540);
             this.Game1_ProgressBar.Name = "Game1_ProgressBar";
-            this.Game1_ProgressBar.Size = new System.Drawing.Size(689, 55);
+            this.Game1_ProgressBar.Size = new System.Drawing.Size(690, 55);
             this.Game1_ProgressBar.TabIndex = 9;
             this.Game1_ProgressBar.Visible = false;
             // 

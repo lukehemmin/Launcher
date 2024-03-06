@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Launcher.Codes_Folder;
 
 namespace Launcher.Settings
 {
@@ -19,7 +20,14 @@ namespace Launcher.Settings
 
         private void Settings_Load(object sender, EventArgs e)
         {
-            Launcher_Version_Label.Text = Main.Launcher_Version;
+            Launcher_Version_Label.Text = "Game Launcher version : " + Main.Launcher_Version;
+        }
+
+        private void test_btn_Click(object sender, EventArgs e)
+        {
+            var game_download = new Game_Download();
+
+            game_download.test();
         }
     }
 }

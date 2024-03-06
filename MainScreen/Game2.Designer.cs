@@ -38,8 +38,8 @@
             // 
             // Game2_Play_Label
             // 
-            this.Game2_Play_Label.BackColor = System.Drawing.Color.White;
-            this.Game2_Play_Label.Location = new System.Drawing.Point(789, 488);
+            this.Game2_Play_Label.BackColor = System.Drawing.Color.Transparent;
+            this.Game2_Play_Label.Location = new System.Drawing.Point(790, 490);
             this.Game2_Play_Label.Name = "Game2_Play_Label";
             this.Game2_Play_Label.Size = new System.Drawing.Size(400, 150);
             this.Game2_Play_Label.TabIndex = 1;
@@ -54,7 +54,7 @@
             // 
             // Logout_Label
             // 
-            this.Logout_Label.Location = new System.Drawing.Point(1057, 50);
+            this.Logout_Label.Location = new System.Drawing.Point(1051, 50);
             this.Logout_Label.Name = "Logout_Label";
             this.Logout_Label.Size = new System.Drawing.Size(140, 30);
             this.Logout_Label.TabIndex = 11;
@@ -65,7 +65,7 @@
             this.Game2_Username_Label.AutoSize = true;
             this.Game2_Username_Label.BackColor = System.Drawing.Color.Transparent;
             this.Game2_Username_Label.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Game2_Username_Label.Location = new System.Drawing.Point(1052, 28);
+            this.Game2_Username_Label.Location = new System.Drawing.Point(1046, 28);
             this.Game2_Username_Label.Name = "Game2_Username_Label";
             this.Game2_Username_Label.Size = new System.Drawing.Size(149, 19);
             this.Game2_Username_Label.TabIndex = 10;
@@ -74,7 +74,7 @@
             // Profile_images_Label
             // 
             this.Profile_images_Label.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.Profile_images_Label.Location = new System.Drawing.Point(982, 20);
+            this.Profile_images_Label.Location = new System.Drawing.Point(976, 20);
             this.Profile_images_Label.Name = "Profile_images_Label";
             this.Profile_images_Label.Size = new System.Drawing.Size(64, 64);
             this.Profile_images_Label.TabIndex = 9;
@@ -83,7 +83,7 @@
             // 
             this.Game2_ProgressBar.Location = new System.Drawing.Point(50, 540);
             this.Game2_ProgressBar.Name = "Game2_ProgressBar";
-            this.Game2_ProgressBar.Size = new System.Drawing.Size(687, 55);
+            this.Game2_ProgressBar.Size = new System.Drawing.Size(690, 55);
             this.Game2_ProgressBar.TabIndex = 12;
             this.Game2_ProgressBar.Visible = false;
             // 

@@ -19,7 +19,7 @@ namespace Launcher
     {
         static public string Usernames;
         static public string Token;
-        static public string ApiServerIp = "http://127.0.0.1:5000";
+        static public string ApiServerIp = "http://141.164.53.42:5000";
         static public string FolderPath = "";
         static public string Launcher_Version = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
 

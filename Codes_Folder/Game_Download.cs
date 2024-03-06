@@ -22,38 +22,57 @@ namespace Launcher.Codes_Folder
         {
             int Game_num = 0;
             string Game_Link = "";
+            int Game_Size = 0;
+            int Game1_Size = 74;
+            int Game2_Size = 20;
 
-            DialogResult dialogResult = MessageBox.Show("To install the game, you need 74GB of storage space. Do you want to continue?", "Insufficient storage space.", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            if (Gamename == "Game1") Game_Size = Game1_Size;
+            else if (Gamename == "Game2") Game_Size = Game2_Size;
+
+            DialogResult dialogResult = MessageBox.Show("To install the game, you need " + Game_Size + "GB of storage space. Do you want to continue?", "Insufficient storage space.", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (dialogResult == DialogResult.Yes)
             {
                 string downloadPath = Main.FolderDialog();
 
-                if (!string.IsNullOrEmpty(downloadPath))
+                int FreeSpaceGB = diskfreespace(downloadPath);
+
+                if (FreeSpaceGB > Game_Size)
                 {
-                    if (GameDownloading == false)
+                    if (!string.IsNullOrEmpty(downloadPath))
                     {
-                        Console.WriteLine("Game Downloading...");
-
-                        if (Gamename == "Game1")
+                        if (GameDownloading == false)
                         {
-                            Game_num = 1;
-                            Game_Link = Game1_Link;
-                        }
-                        else if (Gamename == "Game2")
-                        {
-                            Game_num = 2;
-                            Game_Link = Game2_Link;
-                        }
+                            Console.WriteLine("Game Downloading...");
 
-                        GameDownloading = true;
+                            if (Gamename == "Game1")
+                            {
+                                Game_num = 1;
+                                Game_Link = Game1_Link;
+                            }
+                            else if (Gamename == "Game2")
+                            {
+                                Game_num = 2;
+                                Game_Link = Game2_Link;
+                            }
 
-                        Download_Start(Game_num, Game_Link);
+                            GameDownloading = true;
+
+                            Download_Start(Game_num, Game_Link, downloadPath);
+                        }
+                    }
+                }
+                else
+                {
+                    DialogResult dialogResult2 = MessageBox.Show("Not enough storage space. Unable to download. \nPlease free up space and try again.\nThe required storage space: " + Game_Size + "GB", "Insufficient storage space.", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+                    if (dialogResult2 == DialogResult.Yes)
+                    {
+                        Console.WriteLine("Not enough storage space.");
                     }
                 }
             }
         }
 
-        public void Download_Start(int Game_num, string Game_Link)
+        public void Download_Start(int Game_num, string Game_Link, string downloadPath)
         {
             using (WebClient client = new WebClient())
             {
@@ -70,8 +89,19 @@ namespace Launcher.Codes_Folder
                 };
 
                 Uri uri = new Uri(Game_Link);
-                client.DownloadFileAsync(uri, @"C:\path\to\save\file");
+                client.DownloadFileAsync(uri, downloadPath);
             }
+        }
+
+        private int diskfreespace(string downloadPath)
+        {
+            string driveLetter = Path.GetPathRoot(downloadPath).Substring(0, 1);
+            DriveInfo driveInfo = new DriveInfo(driveLetter);
+            long freeSpaceBytes = driveInfo.AvailableFreeSpace;
+            double freeSpaceGB = freeSpaceBytes / 1024.0 / 1024.0 / 1024.0;
+            int freeSpaceGB_int = (int)freeSpaceGB;
+
+            return freeSpaceGB_int;
         }
 
         public void test()
@@ -81,21 +111,9 @@ namespace Launcher.Codes_Folder
             if (!string.IsNullOrEmpty(downloadPath))
             {
                 Console.WriteLine(downloadPath);
-                int FreeSpaceGB = diskfreespace();
+                int FreeSpaceGB = diskfreespace(downloadPath);
                 Console.WriteLine(FreeSpaceGB + "GB");
             }
-        }
-
-        private int diskfreespace()
-        {
-            string currentDirectory = Directory.GetCurrentDirectory();
-            string driveLetter = Path.GetPathRoot(currentDirectory).Substring(0, 1);
-            DriveInfo driveInfo = new DriveInfo(driveLetter);
-            long freeSpaceBytes = driveInfo.AvailableFreeSpace;
-            double freeSpaceGB = freeSpaceBytes / 1024.0 / 1024.0 / 1024.0;
-            int freeSpaceGB_int = (int)freeSpaceGB;
-
-            return freeSpaceGB_int;
         }
     }
 }

@@ -38,7 +38,7 @@ namespace Launcher.MainScreen
         {
             if (Main.Game2_Button == true)
             {
-                Game2_ProgressBar.Visible = true;
+                Game2_Screen_Set("Play_Btn", "false");
 
                 gameDownload.Button_Click("Game1");
 
@@ -70,9 +70,9 @@ namespace Launcher.MainScreen
             Game2_Username_Label.Text = short_Usernames;
         }
 
-        public void Game2_Button_Set(string change_value1, string change_value2)
+        public void Game2_Screen_Set(string change_value1, string change_value2)
         {
-            if (change_value1 == "Activate")
+            if (change_value1 == "Play_Btn")
             {
                 if (change_value2 == "true")
                 {
@@ -81,6 +81,17 @@ namespace Launcher.MainScreen
                 else if (change_value2 == "false")
                 {
                     Main.Game2_Button = false;
+                }
+            }
+            else if (change_value1 == "ProgressBar")
+            {
+                if (change_value2 == "true")
+                {
+                    Game2_ProgressBar.Visible = true;
+                }
+                else if (change_value2 == "false")
+                {
+                    Game2_ProgressBar.Visible = false;
                 }
             }
             else if (change_value1 == "Image")
