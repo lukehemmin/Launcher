@@ -26,8 +26,18 @@ namespace Launcher.Codes_Folder
             int Game1_Size = 74;
             int Game2_Size = 20;
 
-            if (Gamename == "Game1") Game_Size = Game1_Size;
-            else if (Gamename == "Game2") Game_Size = Game2_Size;
+            if (Gamename == "Game1")
+            {
+                Game_Size = Game1_Size;
+                Game_num = 1;
+                Game_Link = Game1_Link;
+            }
+            else if (Gamename == "Game2")
+            {
+                Game_Size = Game2_Size;
+                Game_num = 2;
+                Game_Link = Game2_Link;
+            }
 
             DialogResult dialogResult = MessageBox.Show("To install the game, you need " + Game_Size + "GB of storage space. Do you want to continue?", "Insufficient storage space.", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             if (dialogResult == DialogResult.Yes)
@@ -43,17 +53,6 @@ namespace Launcher.Codes_Folder
                         if (GameDownloading == false)
                         {
                             Console.WriteLine("Game Downloading...");
-
-                            if (Gamename == "Game1")
-                            {
-                                Game_num = 1;
-                                Game_Link = Game1_Link;
-                            }
-                            else if (Gamename == "Game2")
-                            {
-                                Game_num = 2;
-                                Game_Link = Game2_Link;
-                            }
 
                             GameDownloading = true;
 
